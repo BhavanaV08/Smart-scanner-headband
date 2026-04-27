@@ -11,7 +11,9 @@ OUTPUT_AUDIO = "/home/smartscanner/Desktop/output.mp3"
 IMAGE_PATH = "/home/smartscanner/Desktop/captured.jpg"
 
 def play_audio(text, audio_file): 
-    tts = gTTS(text=text, lang="en") tts.save(audio_file) os.system("amixer set Master 90%") os.system(f"mpg321 -q {audio_file}")
+    tts = gTTS(text=text, lang="en") 
+    tts.save(audio_file) os.system("amixer set Master 90%") 
+    os.system(f"mpg321 -q {audio_file}")
 
 def capture_image(image_path): 
     os.system(f"libcamera-still -o {image_path} --timeout 10000")
