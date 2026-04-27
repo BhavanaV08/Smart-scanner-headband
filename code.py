@@ -12,7 +12,8 @@ IMAGE_PATH = "/home/smartscanner/Desktop/captured.jpg"
 
 def play_audio(text, audio_file): 
     tts = gTTS(text=text, lang="en") 
-    tts.save(audio_file) os.system("amixer set Master 90%") 
+    tts.save(audio_file)
+    os.system("amixer set Master 90%") 
     os.system(f"mpg321 -q {audio_file}")
 
 def capture_image(image_path): 
@@ -24,9 +25,11 @@ def extract_text(image_path):
     text = pytesseract.image_to_string(img, lang="eng") 
     return text.strip()
 
-GPIO.setmode(GPIO.BCM) GPIO.setup(BUTTON_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+GPIO.setmode(GPIO.BCM) 
+GPIO.setup(BUTTON_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
-try: time.sleep(10) play_audio("System is ready. Press the button to start the OCR process.", START_AUDIO)
+try: time.sleep(10) 
+    play_audio("System is ready. Press the button to start the OCR process.", START_AUDIO)
 
 while True:
     if GPIO.input(BUTTON_PIN) == GPIO.LOW:
